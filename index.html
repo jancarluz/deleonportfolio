@@ -201,7 +201,8 @@ tailwind.config={theme:{extend:{
 <script>
 /* ================== EDIT THIS PART ================== */
 const CONFIG = {
-  githubUser: "",          // your GitHub username, e.g. "jancarluzdeleon". Leave "" to show the sample projects.
+  githubUser: "jancarluz", // your GitHub username. Leave "" to show the sample projects.
+  ignore: ["deleonportfolio"], // repos that never appear as projects (this site)
   topic: "portfolio",      // only repos with this GitHub topic are shown. Set "" to show every non-fork repo.
   email: "jancarluzdeleon226@gmail.com"
 };
@@ -301,7 +302,7 @@ async function loadGitHub(){
     if (!r.ok) throw new Error(r.status);
     const data = await r.json();
     const list = data
-      .filter((x) => !x.fork && !x.archived && x.name.toLowerCase() !== (u + ".github.io").toLowerCase() && (!CONFIG.topic || (x.topics || []).includes(CONFIG.topic)))
+      .filter((x) => !x.fork && !x.archived && x.name.toLowerCase() !== (u + ".github.io").toLowerCase() && !(CONFIG.ignore || []).includes(x.name) && (!CONFIG.topic || (x.topics || []).includes(CONFIG.topic)))
       .map((x, i) => ({
         t: pretty(x.name), y: (x.pushed_at || "").slice(0, 4), c: ARTS[i % ARTS.length],
         k: x.language || "Project",

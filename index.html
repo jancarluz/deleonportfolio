@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>jancarluzdeleonportfolio</title>
+<meta name="description" content="Portfolio of Jan Carluz O. De Leon, multimedia designer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Archivo:wght@400;500;700&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config={theme:{extend:{
+  colors:{bg:"var(--bg)",fg:"var(--fg)",muted:"var(--muted)",line:"var(--line)",accent:"var(--red)",paper:"var(--paper)"},
+  fontFamily:{display:["Syne","Arial Black","Impact","sans-serif"],body:["Archivo","Helvetica Neue","Arial","sans-serif"]}
+}}};
+</script>
+<style>
+/* Tailwind does the layout. This block only holds what utilities cannot express:
+   theme variables, keyframes, the wheel geometry and the pseudo-element card art. */
+:root{--bg:#dcdcdc;--fg:#111;--muted:#6b6b6b;--line:#b9b9b9;--red:#d83c3c;--paper:#efefef;--gutter:max(16px,env(safe-area-inset-left,0px))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1b1b;--fg:#ececec;--muted:#9a9a9a;--line:#3a3a3a;--paper:#262626;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1b1b;--fg:#ececec;--muted:#9a9a9a;--line:#3a3a3a;--paper:#262626;color-scheme:dark}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+@keyframes warpA{0%,100%{transform:skewX(-14deg) scaleX(1.02)}50%{transform:skewX(8deg) scaleX(.93)}}
+@keyframes warpB{0%,100%{transform:skewX(10deg) scaleX(.94) translateY(26%)}50%{transform:skewX(-12deg) scaleX(1.04) translateY(20%)}}
+@keyframes drift{0%,100%{transform:translateY(-6%)}50%{transform:translateY(2%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.solid{animation:drift 6s ease-in-out infinite}
+.solid span{animation:warpA 6s ease-in-out infinite}
+.ghost span{animation:warpB 6s ease-in-out infinite}
+.spin{animation:spin 40s linear infinite}
+.still .solid,.still .solid span,.still .ghost span,.still .spin{animation:none}
+.still .solid span{transform:skewX(-6deg)}.still .ghost span{transform:skewX(6deg) translateY(22%)}
+@media (prefers-reduced-motion:reduce){.solid,.solid span,.ghost span,.spin{animation:none}}
+
+.card{position:absolute;left:calc(var(--w)/-2);top:calc(var(--w)*-0.7);width:var(--w);height:calc(var(--w)*1.4);border-radius:calc(var(--w)*.1);
+  transform:rotate(var(--a)) translateY(calc(var(--R)*-1)) rotate(var(--t,0deg));overflow:hidden;cursor:pointer;transition:filter .3s}
+.card:hover,.card:focus-visible{filter:brightness(1.08)}
+.cap{position:absolute;left:8%;bottom:6%;font-size:calc(var(--w)*.07);font-weight:800;letter-spacing:.1em;text-transform:uppercase;max-width:84%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.c-red{background:var(--red)}
+.c-red::before{content:"";position:absolute;left:50%;top:44%;width:62%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--red) 0 16%,#111 17% 30%,var(--red) 31% 40%,#111 41% 70%,transparent 71%)}
+.c-dark{background:radial-gradient(circle at 50% 46%,#fff 0 4%,#6fb8ff 9%,#1646c9 26%,#071236 52%,#05070f 80%)}
+.c-photo{background:linear-gradient(#c9c9c9,#8d8d8d)}
+.c-photo::before{content:"";position:absolute;left:50%;top:34%;width:36%;aspect-ratio:1;border-radius:50%;background:#1a1a1a;transform:translateX(-50%)}
+.c-photo::after{content:"";position:absolute;left:14%;right:14%;top:62%;bottom:-10%;border-radius:50% 50% 0 0;background:#1a1a1a}
+.c-white{background:#f4f4f4;color:#111}
+.c-white::before{content:"1:1";position:absolute;right:8%;top:10%;font-size:calc(var(--w)*.3);font-weight:800;letter-spacing:-.04em}
+.c-white::after{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:26%;background:linear-gradient(90deg,#d6d6d6,#fff,#bdbdbd);border-radius:50%}
+.c-black{background:#101010;color:#fff}
+.c-black::before{content:"";position:absolute;left:50%;top:40%;width:70%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(#fff 0 6deg,transparent 6deg 12deg);-webkit-mask:radial-gradient(circle,transparent 0 46%,#000 47% 100%);mask:radial-gradient(circle,transparent 0 46%,#000 47% 100%)}
+.c-cream{background:#e9e1d2;color:#111}
+.c-cream::before{content:"";position:absolute;left:18%;top:14%;width:30%;height:56%;border-radius:999px 999px 0 0;background:linear-gradient(#111 0 40%,var(--red) 40%)}
+.c-violet{background:#17102b;color:#fff}
+.c-violet::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#8d5bff 0 6%,transparent 6% 12%);-webkit-mask:linear-gradient(transparent 30%,#000);mask:linear-gradient(transparent 30%,#000)}
+</style>
+</head>
+
+<body class="flex min-h-[100svh] flex-col overflow-x-hidden bg-bg pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] font-body text-fg">
+<div class="mx-auto flex w-full max-w-[1500px] flex-1 flex-col">
+
+  <header class="relative z-[3] flex flex-wrap items-start justify-between gap-2.5 pt-6 md:flex-nowrap">
+    <div class="font-display text-xs font-extrabold uppercase leading-[1.35] tracking-[.14em]">Welcome<br>to my</div>
+    <nav id="nav" aria-label="Main" class="order-3 flex w-full flex-wrap gap-x-[22px] gap-y-1 md:order-none md:w-auto md:justify-center md:px-3">
+      <button data-v="home"         class="nav-btn on">Home</button>
+      <button data-v="profile"      class="nav-btn">Profile</button>
+      <button data-v="skills"       class="nav-btn">Skills</button>
+      <button data-v="certificates" class="nav-btn">Certificates</button>
+      <button data-v="projects"     class="nav-btn">Projects</button>
+      <button data-v="settings"     class="nav-btn">Settings</button>
+      <button data-v="contact"      class="nav-btn">Contact</button>
+    </nav>
+    <span aria-hidden="true" class="order-2 grid size-[30px] place-items-center rounded-full border-2 border-fg after:block after:size-2.5 after:rounded-full after:border-2 after:border-fg md:order-none"></span>
+  </header>
+
+  <!-- HOME -->
+  <main id="v-home" class="view flex flex-1 flex-col">
+    <div class="relative mt-[clamp(4px,2vw,24px)] h-[clamp(110px,17vw,240px)]" aria-label="Portfolio">
+      <div class="absolute -top-[4%] left-1/2 h-[112%] w-[clamp(70px,11vw,160px)] -translate-x-1/2 bg-accent"></div>
+      <i class="absolute left-0 top-1/2 size-0 border-y-4 border-r-[7px] border-y-transparent border-r-fg"></i>
+      <i class="absolute right-0 top-1/2 size-0 border-y-4 border-l-[7px] border-y-transparent border-l-fg"></i>
+      <div class="solid absolute inset-0 flex items-center justify-center whitespace-nowrap font-display text-[8vw] font-extrabold uppercase leading-none tracking-[-.02em] text-fg max-md:text-[8.4vw]" aria-hidden="true"><span class="block">Portfolio</span></div>
+      <div class="ghost absolute inset-0 flex items-center justify-center whitespace-nowrap font-display text-[8vw] font-extrabold uppercase leading-none tracking-[-.02em] text-transparent [-webkit-text-stroke:1.5px_var(--fg)] max-md:text-[8.4vw]" aria-hidden="true"><span class="block">Portfolio</span></div>
+    </div>
+    <h1 class="sr-only">Jan Carluz O. De Leon, multimedia designer portfolio</h1>
+    <div class="relative z-[2] flex justify-between pt-2.5 text-[8px] font-bold uppercase tracking-[.14em] md:text-[9px]"><span>Jan Carluz O. De Leon</span><span>Multimedia Designer</span></div>
+    <div class="flex justify-between pt-1.5 text-xs leading-none text-muted" aria-hidden="true"><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span></div>
+
+    <div id="stage" class="relative mt-auto -mx-[var(--gutter)] h-[clamp(380px,56vw,720px)] overflow-hidden pt-[clamp(8px,2vw,28px)] [--w:clamp(110px,16.5vw,210px)] [--R:clamp(190px,32vw,430px)]">
+      <div class="pointer-events-none absolute left-1/2 top-[84%] aspect-square w-[calc(var(--R)*1.1)] -translate-x-1/2 -translate-y-1/2 text-muted" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="spin size-full"><defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+          <text class="fill-current font-body text-[9px] font-bold tracking-[.35em]"><textPath href="#circ">PORTFOLIO · 2026 · PORTFOLIO · 2026 · PORTFOLIO · 2026 ·</textPath></text></svg>
+      </div>
+      <div class="absolute left-1/2 top-[84%] z-[2] -translate-x-1/2 -translate-y-1/2 text-center text-[11px] font-bold leading-[1.6] tracking-[.14em]"><i class="mx-auto block size-0 border-x-[5px] border-b-[9px] border-x-transparent border-b-fg"></i>ME</div>
+      <div id="wheel" class="absolute left-1/2 top-[84%] size-0 will-change-transform"></div>
+    </div>
+  </main>
+
+  <!-- PROFILE -->
+  <main id="v-profile" class="view min-h-[70vh]" hidden>
+    <section class="py-[clamp(56px,9vw,120px)]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-fg pt-3.5"><span class="tiny">Profile</span><span class="tiny">Jan Carluz O. De Leon</span></div>
+      <div class="grid grid-cols-1 gap-[clamp(24px,5vw,72px)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <h2 class="h2">Brand, motion, interface.</h2>
+        <div>
+          <p class="mb-[18px] max-w-[40ch] text-[clamp(17px,1.8vw,24px)] leading-normal">I'm Jan Carluz O. De Leon, a multimedia designer. I make identities, short films and interfaces for people who want something that looks like them and nobody else. Add your city, school and the kind of clients you like here.</p>
+          <dl class="mt-8 grid grid-cols-[auto_1fr] gap-x-[18px] gap-y-2 text-sm">
+            <dt class="tiny pt-0.5 text-muted">Name</dt><dd>Jan Carluz O. De Leon</dd>
+            <dt class="tiny pt-0.5 text-muted">Role</dt><dd>Multimedia Designer</dd>
+            <dt class="tiny pt-0.5 text-muted">Email</dt><dd class="break-all">jancarluzdeleon226@gmail.com</dd>
+          </dl>
+          <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+            <button data-v="skills" class="link">See skills</button>
+            <button data-v="certificates" class="link">See certificates</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SKILLS -->
+  <main id="v-skills" class="view min-h-[70vh]" hidden>
+    <section class="py-[clamp(56px,9vw,120px)]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-fg pt-3.5"><span class="tiny">Skills</span><span class="tiny">Edit the SKILLS list in index.html</span></div>
+      <h2 class="h2">What I work with.</h2>
+      <div id="skills" class="mt-[clamp(20px,4vw,48px)] grid grid-cols-1 gap-x-[clamp(24px,5vw,72px)] gap-y-12 md:grid-cols-2"></div>
+    </section>
+  </main>
+
+  <!-- CERTIFICATES -->
+  <main id="v-certificates" class="view min-h-[70vh]" hidden>
+    <section class="py-[clamp(56px,9vw,120px)]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-fg pt-3.5"><span class="tiny">Certificates</span><span id="certcount" class="tiny"></span></div>
+      <h2 class="h2">Proof of work.</h2>
+      <div id="certs" class="mt-[clamp(20px,4vw,48px)] grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <p class="mt-6 max-w-[60ch] text-sm text-muted">Placeholders. Replace them in the CERTS list in index.html and put your certificate images in a folder called certs.</p>
+    </section>
+  </main>
+
+  <!-- PROJECTS -->
+  <main id="v-projects" class="view min-h-[70vh]" hidden>
+    <section class="py-[clamp(56px,9vw,120px)]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-fg pt-3.5"><span class="tiny">Projects</span><span id="src" class="tiny text-right"></span></div>
+      <h2 id="ph" class="h2">Projects.<br>Tap one.</h2>
+      <ul id="index" class="mt-[clamp(20px,4vw,48px)]"></ul>
+      <div id="detail" aria-live="polite" class="mt-7 grid grid-cols-1 gap-[clamp(20px,4vw,56px)] bg-paper p-[clamp(16px,3vw,40px)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]"></div>
+    </section>
+  </main>
+
+  <!-- SETTINGS -->
+  <main id="v-settings" class="view min-h-[70vh]" hidden>
+    <section class="py-[clamp(56px,9vw,120px)]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-fg pt-3.5"><span class="tiny">Settings</span><span class="tiny">Saved in this browser</span></div>
+      <h2 class="h2">Make it yours.</h2>
+      <div class="mt-[clamp(20px,4vw,48px)]">
+        <div class="srow"><span class="tiny">Theme</span>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Theme"><button class="pill" data-set-theme="system">System</button><button class="pill" data-set-theme="light">Light</button><button class="pill" data-set-theme="dark">Dark</button></div></div>
+        <div class="srow"><span class="tiny">Accent colour</span>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Accent colour">
+            <button class="pill swatch" data-set-accent="#d83c3c" style="--sw:#d83c3c">Red</button><button class="pill swatch" data-set-accent="#2f5bd8" style="--sw:#2f5bd8">Blue</button><button class="pill swatch" data-set-accent="#e0a21b" style="--sw:#e0a21b">Amber</button><button class="pill swatch" data-set-accent="#1f9d6b" style="--sw:#1f9d6b">Green</button></div></div>
+        <div class="srow"><span class="tiny">Animation</span>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Animation"><button class="pill" data-set-motion="on">On</button><button class="pill" data-set-motion="off">Off</button></div></div>
+        <div class="srow"><label for="s-speed" class="tiny">Wheel speed</label>
+          <input id="s-speed" type="range" min="0" max="10" step="1" value="4" class="w-[min(260px,100%)] accent-accent"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACT -->
+  <main id="v-contact" class="view min-h-[70vh]" hidden>
+    <section class="-mx-[var(--gutter)] bg-accent px-[var(--gutter)] py-[clamp(56px,9vw,120px)] text-[#111]">
+      <div class="mb-[clamp(20px,4vw,48px)] flex items-baseline justify-between border-t-2 border-[#111] pt-3.5"><span class="tiny">Contact</span><span class="tiny">Open for projects</span></div>
+      <h2 class="h2 !text-[clamp(28px,6.5vw,92px)]">Let's make<br>something.</h2>
+      <div class="mt-7 flex flex-wrap gap-x-10 gap-y-3 font-bold">
+        <span id="mail" class="break-all">jancarluzdeleon226@gmail.com</span>
+        <button id="copy" class="link !border-[#111]">Copy email</button>
+        <button data-v="projects" class="link !border-[#111]">See projects</button>
+        <a id="gh-link" href="#" target="_blank" rel="noopener" class="link !border-[#111]" hidden>GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="foot" hidden class="flex flex-wrap justify-between gap-2 py-5 text-muted"><span class="tiny">© 2026 Jan Carluz O. De Leon</span><span class="tiny">Multimedia Designer</span></footer>
+</div>
+
+<!-- shared Tailwind component classes -->
+<style type="text/tailwindcss">
+@layer components{
+  .tiny{@apply text-[11px] font-bold uppercase tracking-[.14em]}
+  .h2{@apply font-display text-[clamp(24px,4vw,52px)] font-extrabold uppercase leading-none tracking-[-.02em] text-balance}
+  .nav-btn{@apply border-b-2 border-transparent py-1 text-[11px] font-bold uppercase tracking-[.14em] hover:border-accent [&.on]:border-accent}
+  .link{@apply border-b-2 border-fg pb-0.5 font-bold}
+  .srow{@apply flex flex-wrap items-center justify-between gap-3 border-b border-line py-[22px]}
+  .pill{@apply rounded-full border-[1.5px] border-fg px-4 py-[9px] text-[11px] font-bold uppercase tracking-[.14em] aria-pressed:bg-fg aria-pressed:text-bg}
+  .swatch{@apply before:mr-2 before:inline-block before:size-2.5 before:rounded-full before:bg-[var(--sw)]}
+}
+</style>
+
+<script>
+/* ================== EDIT THIS PART ================== */
+const CONFIG = {
+  githubUser: "",          // your GitHub username, e.g. "jancarluzdeleon". Leave "" to show the sample projects.
+  topic: "portfolio",      // only repos with this GitHub topic are shown. Set "" to show every non-fork repo.
+  email: "jancarluzdeleon226@gmail.com"
+};
+
+const SKILLS = [   // [name, level 0-100]. These levels are samples.
+  {g:"Design",  items:[["Brand identity",90],["Art direction",80],["UI / UX",75],["Layout and type",85]]},
+  {g:"Motion and media", items:[["Motion design",80],["Video editing",75],["3D and render",55],["Photography",70]]},
+  {g:"Tools",   items:[["Figma",85],["Photoshop",90],["Illustrator",85],["After Effects",75]]},
+  {g:"Code",    items:[["HTML and CSS",75],["Tailwind CSS",70],["JavaScript",50],["Android Studio",40]]}
+];
+
+const CERTS = [    // img is optional, e.g. "certs/my-certificate.jpg". url is optional.
+  {t:"Certificate title", org:"Issuing organization", y:"2025", id:"ID-0001", img:"", url:""},
+  {t:"Certificate title", org:"Issuing organization", y:"2025", id:"ID-0002", img:"", url:""},
+  {t:"Certificate title", org:"Issuing organization", y:"2024", id:"ID-0003", img:"", url:""}
+];
+
+const SAMPLE = [   // shown until GitHub projects load, or when githubUser is empty
+ {t:"Test",y:"2026",c:"c-red",k:"Brand identity",d:"A symbol system for a vision-care studio, built from one eye shape that rotates into a full set of icons.",r:"Identity, packaging",cl:"Studio client"},
+ {t:"Test",y:"2026",c:"c-dark",k:"Motion",d:"A 40 second title sequence that follows a single light source from a spark to a full burst.",r:"Direction, 3D, sound",cl:"Short film"},
+ {t:"Test",y:"2025",c:"c-photo",k:"Photography",d:"Twelve monochrome portraits shot on one afternoon with a single window and a paper bounce.",r:"Photography, retouch",cl:"Personal"},
+ {t:"Test",y:"2025",c:"c-white",k:"Product",d:"Launch visuals for an electric car in a square format made for social feeds and print posters.",r:"Art direction, render",cl:"Auto brand"},
+ {t:"Test",y:"2025",c:"c-black",k:"Poster",d:"A poster series where a circular pattern is cut by a portrait in negative space.",r:"Poster, type",cl:"Gallery"},
+ {t:"Test",y:"2024",c:"c-cream",k:"Editorial",d:"A magazine spread system on warm paper with a red and black two colour print.",r:"Layout, type",cl:"Magazine"},
+ {t:"Test",y:"2024",c:"c-violet",k:"Interface",d:"Visuals and app screens for a music festival, driven by moving violet equaliser bars.",r:"UI, motion",cl:"Festival"},
+ {t:"Test",y:"2023",c:"c-red",k:"Exhibition",d:"A set of tall red panels used as wayfinding and display walls for a design week.",r:"Environmental, graphics",cl:"Design week"}
+];
+/* ==================================================== */
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ARTS = ["c-red","c-dark","c-photo","c-white","c-black","c-cream","c-violet"];
+let P = SAMPLE;
+
+/* ---------- projects: wheel, list, detail ---------- */
+function renderProjects(list, label){
+  P = list;
+  const wheel = $("wheel"), idx = $("index");
+  wheel.innerHTML = ""; idx.innerHTML = "";
+  const total = 11;
+  for (let i = 0; i < total; i++){
+    const p = P[i % P.length], b = document.createElement("button");
+    b.type = "button";
+    b.className = "card font-display " + p.c;
+    b.style.setProperty("--a", (i * (360 / total)) + "deg");
+    b.style.setProperty("--t", ((i % 3) - 1) * 5 + "deg");
+    b.setAttribute("aria-label", "Open project " + p.t);
+    b.innerHTML = (p.img ? '<img alt="" class="absolute inset-0 size-full object-cover" src="' + esc(p.img) + '" onerror="this.remove()">' : "") +
+      '<span class="cap" style="color:' + (p.c === "c-white" || p.c === "c-cream" ? "#111" : "#fff") + '">' + esc(p.t) + "</span>";
+    b.onclick = () => { go("projects"); show(i % P.length); };
+    wheel.appendChild(b);
+  }
+  P.forEach((p, i) => {
+    const li = document.createElement("li");
+    li.className = "border-b border-line";
+    li.innerHTML = '<button type="button" class="group grid w-full grid-cols-[2rem_1fr] items-center gap-3 py-[clamp(14px,2vw,26px)] text-left md:grid-cols-[3rem_1fr_auto]">' +
+      '<span class="text-xs tabular-nums text-muted">' + String(i + 1).padStart(2, "0") + "</span>" +
+      '<span class="min-w-0 break-words font-display text-[clamp(17px,2.6vw,36px)] font-extrabold uppercase tracking-[-.01em] transition group-hover:translate-x-3.5 group-hover:text-accent group-focus-visible:translate-x-3.5 group-focus-visible:text-accent">' + esc(p.t) + "</span>" +
+      '<span class="hidden text-right text-xs font-bold uppercase tracking-[.12em] text-muted md:block">' + esc(p.k) + " · " + esc(p.y) + "</span></button>";
+    li.firstChild.onclick = () => show(i);
+    idx.appendChild(li);
+  });
+  const n = P.length;
+  $("ph").innerHTML = (n === 1 ? "One project." : n + " projects.") + "<br>Tap one.";
+  $("src").textContent = label;
+  show(0);
+}
+function show(i){
+  const p = P[i];
+  $("detail").innerHTML =
+    '<div class="relative aspect-[1/1.1] overflow-hidden rounded-[14px] [--w:min(360px,70vw)] ' + p.c + '">' +
+      (p.img ? '<img alt="" class="absolute inset-0 size-full object-cover" src="' + esc(p.img) + '" onerror="this.remove()">' : "") + "</div>" +
+    '<div class="min-w-0"><span class="tiny text-accent">' + esc(p.k) + "</span>" +
+    '<h3 class="mb-3 break-words font-display text-[clamp(24px,3.4vw,46px)] font-extrabold uppercase leading-none">' + esc(p.t) + "</h3>" +
+    '<p class="mb-3.5 max-w-[60ch] leading-relaxed">' + esc(p.d) + "</p>" +
+    '<dl class="mt-5 grid grid-cols-[auto_1fr] gap-x-[18px] gap-y-1.5 text-sm">' +
+    '<dt class="tiny pt-0.5 text-muted">Role</dt><dd>' + esc(p.r) + "</dd>" +
+    '<dt class="tiny pt-0.5 text-muted">Source</dt><dd>' + esc(p.cl) + "</dd>" +
+    '<dt class="tiny pt-0.5 text-muted">Year</dt><dd>' + esc(p.y) + "</dd></dl>" +
+    '<div class="mt-6 flex flex-wrap gap-x-8 gap-y-3">' +
+    (p.url ? '<a class="link" target="_blank" rel="noopener" href="' + esc(p.url) + '">View on GitHub</a>' : "") +
+    (p.live ? '<a class="link" target="_blank" rel="noopener" href="' + esc(p.live) + '">Live site</a>' : "") +
+    "</div></div>";
+}
+
+/* ---------- GitHub sync: new repos show up with no redeploy ---------- */
+const pretty = (s) => s.replace(/[-_]+/g, " ");
+async function loadGitHub(){
+  const u = CONFIG.githubUser.trim();
+  if (!u) return;
+  const link = $("gh-link"); link.href = "https://github.com/" + u; link.hidden = false;
+  const key = "jc-gh-" + u;
+  const use = (d) => renderProjects(d, "Synced from github.com/" + u);
+  try { const c = JSON.parse(localStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 600000 && c.d.length) return use(c.d); } catch (e) {}
+  try {
+    const r = await fetch("https://api.github.com/users/" + encodeURIComponent(u) + "/repos?per_page=100&sort=pushed");
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    const list = data
+      .filter((x) => !x.fork && !x.archived && x.name.toLowerCase() !== (u + ".github.io").toLowerCase() && (!CONFIG.topic || (x.topics || []).includes(CONFIG.topic)))
+      .map((x, i) => ({
+        t: pretty(x.name), y: (x.pushed_at || "").slice(0, 4), c: ARTS[i % ARTS.length],
+        k: x.language || "Project",
+        d: x.description || "No description yet. Add one on the GitHub repo page.",
+        r: (x.topics || []).filter((t) => t !== CONFIG.topic).join(", ") || x.language || "Project",
+        cl: "GitHub", url: x.html_url, live: x.homepage || "",
+        img: "https://raw.githubusercontent.com/" + u + "/" + x.name + "/HEAD/preview.png"
+      }));
+    if (list.length){ use(list); try { localStorage.setItem(key, JSON.stringify({t: Date.now(), d: list})); } catch (e) {} }
+  } catch (e) { /* keep the sample projects */ }
+}
+
+/* ---------- skills and certificates ---------- */
+$("skills").innerHTML = SKILLS.map((g) =>
+  '<div><h3 class="tiny mb-3 border-t-2 border-fg pt-3.5">' + esc(g.g) + "</h3><ul>" +
+  g.items.map((s) =>
+    '<li class="border-b border-line py-3.5"><div class="mb-2 flex justify-between gap-2 text-sm font-medium"><span>' + esc(s[0]) + '</span><span class="tabular-nums text-muted">' + s[1] + "%</span></div>" +
+    '<div class="h-1.5 bg-line" role="img" aria-label="' + esc(s[0]) + " " + s[1] + ' percent"><div class="h-full bg-accent" style="width:' + s[1] + '%"></div></div></li>').join("") +
+  "</ul></div>").join("");
+
+$("certcount").textContent = CERTS.length + (CERTS.length === 1 ? " certificate" : " certificates");
+$("certs").innerHTML = CERTS.map((c) =>
+  '<article class="flex min-w-0 flex-col gap-3 bg-paper p-4">' +
+  '<div class="relative grid aspect-[4/3] place-items-center overflow-hidden bg-line">' +
+    '<span class="font-display text-xs font-extrabold uppercase tracking-[.2em] text-muted">Certificate</span>' +
+    (c.img ? '<img alt="' + esc(c.t) + '" class="absolute inset-0 size-full object-cover" src="' + esc(c.img) + '" onerror="this.remove()">' : "") + "</div>" +
+  '<h3 class="break-words font-display text-lg font-extrabold uppercase leading-tight">' + esc(c.t) + "</h3>" +
+  '<p class="text-sm text-muted">' + esc(c.org) + " · " + esc(c.y) + "</p>" +
+  '<p class="tiny text-muted">' + esc(c.id) + "</p>" +
+  (c.url ? '<a class="link self-start" target="_blank" rel="noopener" href="' + esc(c.url) + '">View credential</a>' : "") +
+  "</article>").join("");
+
+/* ---------- settings ---------- */
+const sysReduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+const S = {theme:"system", accent:"#d83c3c", motion: sysReduce ? "off" : "on", speed:4};
+try { Object.assign(S, JSON.parse(localStorage.getItem("jc-settings") || "{}")); } catch (e) {}
+const save = () => { try { localStorage.setItem("jc-settings", JSON.stringify(S)); } catch (e) {} };
+function apply(){
+  const r = document.documentElement;
+  if (S.theme === "system") r.removeAttribute("data-theme"); else r.dataset.theme = S.theme;
+  r.style.setProperty("--red", S.accent);
+  r.classList.toggle("still", S.motion === "off");
+  document.querySelectorAll("[data-set-theme]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.setTheme === S.theme));
+  document.querySelectorAll("[data-set-accent]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.setAccent === S.accent));
+  document.querySelectorAll("[data-set-motion]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.setMotion === S.motion));
+  $("s-speed").value = S.speed;
+}
+document.querySelectorAll("[data-set-theme]").forEach((b) => b.onclick = () => { S.theme = b.dataset.setTheme; apply(); save(); });
+document.querySelectorAll("[data-set-accent]").forEach((b) => b.onclick = () => { S.accent = b.dataset.setAccent; apply(); save(); });
+document.querySelectorAll("[data-set-motion]").forEach((b) => b.onclick = () => { S.motion = b.dataset.setMotion; apply(); save(); });
+$("s-speed").oninput = function(){ S.speed = +this.value; save(); };
+
+/* ---------- views ---------- */
+function go(v){
+  document.querySelectorAll(".view").forEach((m) => { m.hidden = m.id !== "v-" + v; });
+  document.querySelectorAll("#nav button").forEach((b) => b.classList.toggle("on", b.dataset.v === v));
+  $("foot").hidden = v === "home";
+  scrollTo(0, 0);
+}
+document.querySelectorAll("[data-v]").forEach((b) => b.onclick = () => go(b.dataset.v));
+
+/* ---------- wheel motion ---------- */
+let rot = 0, last = performance.now();
+function tick(t){
+  if (S.motion === "on") rot += (t - last) * 0.001 * S.speed;
+  last = t;
+  $("wheel").style.transform = "rotate(" + (rot + scrollY * 0.05) + "deg)";
+  requestAnimationFrame(tick);
+}
+
+/* ---------- contact ---------- */
+$("copy").onclick = function(){
+  const b = this, t = $("mail").textContent;
+  const sel = () => { const r = document.createRange(); r.selectNodeContents($("mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  const done = () => { b.textContent = "Copied"; setTimeout(() => { b.textContent = "Copy email"; }, 1500); };
+  try { navigator.clipboard.writeText(t).then(done, sel); } catch (e) { sel(); }
+};
+
+/* ---------- start ---------- */
+apply();
+renderProjects(SAMPLE, CONFIG.githubUser ? "Loading from GitHub" : "Sample projects");
+requestAnimationFrame(tick);
+loadGitHub();
+</script>
+</body>
+</html>

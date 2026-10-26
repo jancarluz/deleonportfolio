@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daet, Camarines Norte | A local field guide</title>
+<meta name="description" content="A local field guide to Daet, Camarines Norte: beaches, heritage spots, events, stories and forums.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Daet, Camarines Norte, home">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="34" height="34"><g fill="none" stroke="#f5b82e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 17c-7 0-11 5-11 12 0 7 5 12 11 12s11-5 11-12c0-7-4-12-11-12z"/><path d="M17 22l14 14M24 18l9 9M15 29l8 8M31 22l-14 14M24 18l-9 9M33 29l-8 8"/></g><g fill="#58c26b"><path d="M24 15c-1-4-4-7-6-8 3 0 6 3 6 8z"/><path d="M24 15c1-5 3-9 6-10-1 3-2 7-6 10z"/><path d="M24 15c-3-2-7-3-10-3 3-1 8 0 10 3z"/></g></svg>
+      </span>
+      <span class="brand-text"><strong>DAET</strong><small>CAMARINES NORTE</small></span>
+    </a>
+    <ul class="links">
+      <li><a href="#discover">Discover</a></li>
+      <li><a href="#spots">Spots</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#blogs">Blogs</a></li>
+      <li><a href="#forums">Forums</a></li>
+    </ul>
+    <button class="signin" id="open-signin" type="button">Sign in</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" id="discover">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="pill-tag"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.8 4.7L18.5 9l-4.7 1.3L12 15l-1.8-4.7L5.5 9l4.7-1.3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>A local field guide to Daet</span>
+        <h1>Take the long way through Daet.</h1>
+        <p class="lead">Start with the shoreline, stay for the stories, and let local voices shape the rest of your day in Camarines Norte.</p>
+        <div class="cta">
+          <button class="btn btn-primary" id="open-create" type="button">Create account</button>
+          <a class="btn btn-ghost" href="#spots">Explore now</a>
+        </div>
+        <dl class="stats" aria-label="Guide at a glance">
+          <div class="stat"><dt>Beaches</dt><dd id="n-beaches">0</dd></div>
+          <div class="stat"><dt>Local stories</dt><dd id="n-stories">0</dd></div>
+          <div class="stat"><dt>Travel guides</dt><dd id="n-guides">0</dd></div>
+        </dl>
+      </div>
+      <figure class="hero-photo">
+        <img src="assets/hero.jpg" alt="The white Rizal Monument in the centre of Daet, with two gold stars and the dates 1887 and 1891 on its base" width="683" height="468">
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="spots">
+    <div class="wrap">
+      <p class="eyebrow">Spots</p>
+      <h2>Places worth the trip.</h2>
+      <div class="chips" role="group" aria-label="Filter spots" id="chips"></div>
+      <div class="cards" id="spot-list"></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="events">
+    <div class="wrap">
+      <p class="eyebrow">Events</p>
+      <h2>What is happening.</h2>
+      <ul class="rows" id="event-list"></ul>
+    </div>
+  </section>
+
+  <section class="section" id="blogs">
+    <div class="wrap">
+      <p class="eyebrow">Blogs</p>
+      <h2>Stories from locals.</h2>
+      <div class="cards" id="blog-list"></div>
+      <h3 class="sub">Travel guides</h3>
+      <div class="cards small" id="guide-list"></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="forums">
+    <div class="wrap">
+      <p class="eyebrow">Forums</p>
+      <h2>Ask the people who live here.</h2>
+      <ul class="rows" id="forum-list"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap">Daet, Camarines Norte. A local field guide.</div></footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <form method="dialog" id="auth-form">
+    <h2 id="dlg-title">Sign in</h2>
+    <p class="note">Demo only. Your name is saved in this browser and nowhere else.</p>
+    <label>Name <input name="name" required autocomplete="name"></label>
+    <label>Email <input name="email" type="email" required autocomplete="email"></label>
+    <div class="dlg-actions">
+      <button type="button" class="btn btn-ghost" id="dlg-cancel">Cancel</button>
+      <button class="btn btn-primary" value="ok">Continue</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

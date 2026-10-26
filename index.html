@@ -230,6 +230,12 @@ const SAMPLE = [   // shown until GitHub projects load, or when githubUser is em
  {t:"Test",y:"2024",c:"c-violet",k:"Interface",d:"Visuals and app screens for a music festival, driven by moving violet equaliser bars.",r:"UI, motion",cl:"Festival"},
  {t:"Test",y:"2023",c:"c-red",k:"Exhibition",d:"A set of tall red panels used as wayfinding and display walls for a design week.",r:"Environmental, graphics",cl:"Design week"}
 ];
+/* Projects that live inside this repo (a folder next to index.html).
+   They always show first, then the GitHub repos tagged with the topic. */
+const LOCAL = [
+ {t:"Daet Guide",y:"2026",c:"c-dark",k:"Web design",d:"A local field guide to Daet, Camarines Norte: beaches, heritage spots, events, stories and forums.",r:"Design, front-end",cl:"Personal",
+  url:"https://github.com/jancarluz/deleonportfolio/tree/main/daet-guide",live:"daet-guide/",img:"daet-guide/preview.png"}
+];
 /* ==================================================== */
 
 const $ = (id) => document.getElementById(id);
@@ -294,7 +300,7 @@ async function loadGitHub(){
   const u = CONFIG.githubUser.trim();
   if (!u) return;
   const link = $("gh-link"); link.href = "https://github.com/" + u; link.hidden = false;
-  const key = "jc-gh-" + u;
+  const key = "jc-gh2-" + u;
   const use = (d) => renderProjects(d, "Synced from github.com/" + u);
   try { const c = JSON.parse(localStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 600000 && c.d.length) return use(c.d); } catch (e) {}
   try {
@@ -311,7 +317,8 @@ async function loadGitHub(){
         cl: "GitHub", url: x.html_url, live: x.homepage || "",
         img: "https://raw.githubusercontent.com/" + u + "/" + x.name + "/HEAD/preview.png"
       }));
-    if (list.length){ use(list); try { localStorage.setItem(key, JSON.stringify({t: Date.now(), d: list})); } catch (e) {} }
+    const all = LOCAL.concat(list);
+    if (all.length){ use(all); try { localStorage.setItem(key, JSON.stringify({t: Date.now(), d: all})); } catch (e) {} }
   } catch (e) { /* keep the sample projects */ }
 }
 
@@ -383,7 +390,7 @@ $("copy").onclick = function(){
 
 /* ---------- start ---------- */
 apply();
-renderProjects(SAMPLE, CONFIG.githubUser ? "Loading from GitHub" : "Sample projects");
+renderProjects(LOCAL.concat(SAMPLE), CONFIG.githubUser ? "Loading from GitHub" : "Sample projects");
 requestAnimationFrame(tick);
 loadGitHub();
 </script>
